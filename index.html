@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -17,80 +18,92 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        dark: '#0f172a',
-                        light: '#f8fafc'
+                        primary: '#6e45e2',
+                        secondary: '#88d3ce',
+                        dark: '#0a0a1a',
+                        light: '#f0f4f8'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(110, 69, 226, 0.5)',
+                        'glow-sm': '0 0 8px rgba(110, 69, 226, 0.3)'
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #1a1a2e;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         body.dark {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #0a0a1a;
+            color: #e6e6ff;
         }
         
         .dark .bg-slate-50 {
-            background-color: #1e293b;
+            background-color: #1a1a2e;
         }
         
         .dark .text-slate-600 {
-            color: #94a3b8;
+            color: #a1a1c2;
         }
         
         .dark .border-slate-700 {
-            border-color: #334155;
+            border-color: #2a2a4a;
         }
         
         .gradient-text {
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            background-image: linear-gradient(90deg, #6366f1, #8b5cf6);
+            background-image: linear-gradient(135deg, #6e45e2, #88d3ce);
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark .card-hover {
+            background: rgba(26, 26, 46, 0.8);
         }
         
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px -10px rgba(110, 69, 226, 0.3);
         }
         
         .dark .card-hover:hover {
-            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 30px -10px rgba(110, 69, 226, 0.5);
         }
         
         .nav-link {
             position: relative;
+            transition: all 0.3s ease;
         }
         
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: -2px;
+            height: 3px;
+            bottom: -4px;
             left: 0;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            transition: width 0.3s ease;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 2px;
         }
         
         .nav-link:hover::after {
@@ -100,11 +113,42 @@
         #hero {
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+        }
+        
+        .dark #hero {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
         }
         
         .hero-content {
             position: relative;
             z-index: 10;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .dark .hero-content {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .projects-slider {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .project-scroll-prev, .project-scroll-next {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7) !important;
+        }
+        
+        .dark .project-scroll-prev, .dark .project-scroll-next {
+            background: rgba(26, 26, 46, 0.7) !important;
+        }
+        
+        .project-scroll-prev:hover, .project-scroll-next:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
         }
     </style>
 </head>
@@ -119,7 +163,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">About</a>
                     <a href="#projects" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Projects</a>
-                    <a href="#skills" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Skills</a>
+                    <a href="#skills" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Skills & Certifications</a>
                     <a href="#education" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Education</a>
                     <a href="#contact" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Contact</a>
                     <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
@@ -140,7 +184,7 @@
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">About</a>
                 <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Projects</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Skills</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Skills & Certifications</a>
                 <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Education</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary">Contact</a>
                 <div class="px-3 py-2">
@@ -295,83 +339,66 @@
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 overflow-hidden">
-                        <img src="http://static.photos/technology/640x360/1" alt="Sentiment Analysis Project" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Sentiment Analysis Tool</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-4">
-                            Developed a sentiment analysis tool using Python and NLP techniques that classifies text emotions with 85% accuracy.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-3 py-1 rounded-full">NLP</span>
-                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-3 py-1 rounded-full">Machine Learning</span>
+            <div class="relative overflow-hidden">
+                <div class="projects-slider flex overflow-x-auto pb-6 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide" style="scroll-snap-type: x mandatory;">
+                    <!-- Project 1 -->
+                    <div class="flex-shrink-0 w-80 mx-2 snap-start">
+                        <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover h-full" data-aos="fade-up" data-aos-delay="100">
+                            <div class="p-6 h-full flex flex-col">
+                                <h3 class="text-xl font-bold mb-2">Sentiment Analysis Tool</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                                    Developed a sentiment analysis tool using Python and NLP techniques that classifies text emotions with 85% accuracy.
+                                </p>
+                                <div class="flex">
+                                    <a href="#" class="text-primary hover:underline flex items-center">
+                                        <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
-                            </a>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="flex-shrink-0 w-80 mx-2 snap-start">
+                        <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover h-full" data-aos="fade-up" data-aos-delay="200">
+                            <div class="p-6 h-full flex flex-col">
+                                <h3 class="text-xl font-bold mb-2">AI-Powered Chatbot</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                                    Built an AI chatbot using transformer models that can answer domain-specific questions with contextual understanding.
+                                </p>
+                                <div class="flex">
+                                    <a href="#" class="text-primary hover:underline flex items-center">
+                                        <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="flex-shrink-0 w-80 mx-2 snap-start">
+                        <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover h-full" data-aos="fade-up" data-aos-delay="300">
+                            <div class="p-6 h-full flex flex-col">
+                                <h3 class="text-xl font-bold mb-2">Image Classification Model</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                                    Implemented a CNN model using TensorFlow that achieves 92% accuracy on CIFAR-10 image classification task.
+                                </p>
+                                <div class="flex">
+                                    <a href="#" class="text-primary hover:underline flex items-center">
+                                        <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 overflow-hidden">
-                        <img src="http://static.photos/technology/640x360/2" alt="Chatbot Project" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">AI-Powered Chatbot</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-4">
-                            Built an AI chatbot using transformer models that can answer domain-specific questions with contextual understanding.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-3 py-1 rounded-full">NLP</span>
-                            <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-3 py-1 rounded-full">Transformers</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-md card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="http://static.photos/technology/640x360/3" alt="Image Classifier" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Image Classification Model</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-4">
-                            Implemented a CNN model using TensorFlow that achieves 92% accuracy on CIFAR-10 image classification task.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-3 py-1 rounded-full">TensorFlow</span>
-                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-3 py-1 rounded-full">CNN</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
-                            </a>
-                            <a href="#" class="text-primary hover:underline flex items-center">
-                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
-                            </a>
-                        </div>
-                    </div>
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="project-scroll-prev w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-md flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
+                        <i data-feather="chevron-left"></i>
+                    </button>
+                    <button class="project-scroll-next w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-md flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
+                        <i data-feather="chevron-right"></i>
+                    </button>
                 </div>
             </div>
             
@@ -383,21 +410,40 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills & Certifications Section -->
     <section id="skills" class="py-20 bg-slate-50 dark:bg-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-                    <span class="gradient-text">My Skills</span>
+                    <span class="gradient-text">Skills & Certifications</span>
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
-                <p class="text-slate-600 dark:text-slate-400 mt-6 max-w-2xl mx-auto">
-                    The technical skills I've acquired through my studies and personal projects.
-                </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Technical Skills -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Certifications Card -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-md" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <i data-feather="award" class="text-primary mr-3"></i>
+                        <span class="text-slate-900 dark:text-slate-100">Certifications</span>
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                            <span class="text-slate-700 dark:text-slate-300">Machine Learning Certification</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                            <span class="text-slate-700 dark:text-slate-300">Python Programming Certification</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                            <span class="text-slate-700 dark:text-slate-300">Data Science Fundamentals</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Technical Skills Card -->
                 <div class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl font-bold mb-6 flex items-center">
                         <i data-feather="code" class="text-primary mr-3"></i>
@@ -426,72 +472,13 @@
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Tools & Technologies -->
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <i data-feather="tool" class="text-secondary mr-3"></i>
-                        <span class="text-slate-900 dark:text-slate-100">Tools & Technologies</span>
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">TensorFlow/PyTorch</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Scikit-learn</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Pandas & NumPy</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Git & GitHub</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-secondary rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Google Colab</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Soft Skills -->
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-xl font-bold mb-6 flex items-center">
-                        <i data-feather="users" class="text-blue-500 mr-3"></i>
-                        <span class="text-slate-900 dark:text-slate-100">Soft Skills</span>
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Problem Solving</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Critical Thinking</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Team Collaboration</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Continuous Learning</span>
-                        </li>
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                            <span class="text-slate-700 dark:text-slate-300">Adaptability</span>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
 
+
     <!-- Education Section -->
-    <section id="education" class="py-20 bg-white dark:bg-slate-900">
+    <section id="education" class="py-20 bg-slate-50 dark:bg-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
@@ -633,6 +620,19 @@
     </a>
 </footer>
 
+    <style>
+        .projects-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .projects-slider {
+            scroll-behavior: smooth;
+        }
+    </style>
+
     <script>
         // Initialize AOS
         AOS.init({
@@ -642,6 +642,40 @@
         });
         
         // Initialize Feather Icons
+        
+        // Projects slider functionality
+        const slider = document.querySelector('.projects-slider');
+        const prevBtn = document.querySelector('.project-scroll-prev');
+        const nextBtn = document.querySelector('.project-scroll-next');
+        
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Enable keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                slider.scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'ArrowLeft') {
+                slider.scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            }
+        });
         feather.replace();
         
         // Theme toggle functionality
@@ -680,33 +714,36 @@
             });
         });
         
-        // Initialize Vanta.js background only on desktop
+        // Initialize Vanta.js WAVES background
         let vantaEffect;
         if (window.innerWidth > 768) {
-            vantaEffect = VANTA.GLOBE({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x6366f1,
-            color2: 0x8b5cf6,
-            backgroundColor: 0xf8fafc,
-            size: 1.10
-        });
+            vantaEffect = VANTA.WAVES({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x6e45e2,
+                shininess: 35.00,
+                waveHeight: 15.00,
+                waveSpeed: 0.75,
+                zoom: 0.85
+            });
         
-        // Update Vanta.js background on theme change
+        // Update Vanta.js waves on theme change
         function updateVantaTheme() {
             if (html.classList.contains('dark')) {
                 vantaEffect.setOptions({
-                    backgroundColor: 0x0f172a
+                    color: 0x88d3ce,
+                    backgroundColor: 0x0a0a1a
                 });
             } else {
                 vantaEffect.setOptions({
-                    backgroundColor: 0xf8fafc
+                    color: 0x6e45e2,
+                    backgroundColor: 0xf0f4f8
                 });
             }
         }
