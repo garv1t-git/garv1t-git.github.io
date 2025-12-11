@@ -1,0 +1,4 @@
+This is a Brave Creators publisher verification file.
+
+Domain: garv1t-git.github.io
+Token: 3b08536d267d027d7bdf53e845da966a207a2cb62c65b0e70cf88b7e8f9b8fdd
